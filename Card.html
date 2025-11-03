@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Template</title>
+  <style>
+    /* Background Setup */
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: radial-gradient(circle at center, #0a2a43, #000);
+      perspective: 1000px;
+    }
+
+    /* Card Container */
+    .card {
+      width: 400px;
+      height: 250px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+      cursor: pointer;
+    }
+
+    /* Flip Effect on Hover */
+    .card:hover {
+      transform: rotateY(180deg);
+    }
+
+    /* Front and Back Faces */
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      backface-visibility: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    /* --- FRONT DESIGN --- */
+    .front {
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77, #778da9);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 25px;
+      transform: rotateY(0deg);
+    }
+
+    .front h2 {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .chip {
+      width: 60px;
+      height: 40px;
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .card-number {
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+      margin: 10px 0;
+    }
+
+    .card-holder {
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .amex-logo {
+      align-self: flex-end;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #00c8ff;
+    }
+
+    /* --- BACK DESIGN --- */
+    .back {
+      background: linear-gradient(135deg, #14213d, #1e2a47, #23395b);
+      color: #fff;
+      transform: rotateY(180deg);
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .back h3 {
+      color: #00c8ff;
+      margin-bottom: 10px;
+    }
+
+    .definition {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    .states {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .state {
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 5px solid #00c8ff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: transform 0.3s;
+    }
+
+    .state:hover {
+      transform: scale(1.05);
+      background: rgba(0, 200, 255, 0.2);
+    }
+
+    /* Card Shadow Effect on Hover */
+    .card:hover {
+      box-shadow: 0 30px 50px rgba(0, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <!-- FRONT SIDE -->
+    <div class="card-face front">
+      <div class="amex-logo">AMERICAN EXPRESS</div>
+      <div class="chip"></div>
+      <h2>PROMISES IN JS</h2>
+      <div class="card-number">**** **** **** 2025</div>
+      <div class="card-holder">PRUTHVI Y D</div>
+    </div>
+
+    <!-- BACK SIDE -->
+    <div class="card-face back">
+      <h3>Promise in JavaScript</h3>
+      <p class="definition">
+        A <b>Promise</b> is an object that represents the eventual completion (or failure)
+        of an asynchronous operation and its resulting value.
+      </p>
+      <div class="states">
+        <div class="state"><b>1. Pending:🟡</b> Operation is still in progress.</div>
+        <div class="state"><b>2. Resolved:🟢</b> Operation completed successfully.</div>
+        <div class="state"><b>3. Rejected:🔴</b> Operation failed with an error.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
