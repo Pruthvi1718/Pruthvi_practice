@@ -23,14 +23,13 @@ demo();
 //async() and wait() with promise
 async function ABC() {
 
-  // Simulating data fetching (like server call)
   let promise = new Promise((resolve) => {
     setTimeout(() => {
       resolve("Data received successfully!");
     }, 1000);
   });
 
-  let result = await promise; // waits until promise completes
+  let result = await promise;
   console.log(result);
 }
 ABC();
@@ -43,16 +42,16 @@ ABC();
 function checkNumber(num) {
   return new Promise((resolve, reject) => {
     if(num > 0) {
-      resolve("Number is Positive ✅");
+      resolve("Number is Positive");
     } else {
-      reject("Number is Not Positive ❌");
+      reject("Number is Not Positive");
     }
   });
 }
 
 async function runCheck() {
   try {
-    let result = await checkNumber(5); // Change value to test
+    let result = await checkNumber(5);
     console.log(result);
   } catch(error) {
     console.log(error);
@@ -87,14 +86,13 @@ demo();
 //async() and wait() with promise
 async function ABC() {
 
-  // Simulating data fetching (like server call)
   let promise = new Promise((resolve) => {
     setTimeout(() => {
       resolve("Data received successfully!");
     }, 1000);
   });
 
-  let result = await promise; // waits until promise completes
+  let result = await promise;
   console.log(result);
 }
 ABC();
@@ -116,7 +114,7 @@ function checkNumber(num) {
 
 async function runCheck() {
   try {
-    let result = await checkNumber(5); // Change value to test
+    let result = await checkNumber(5);
     console.log(result);
   } catch(error) {
     console.log(error);
