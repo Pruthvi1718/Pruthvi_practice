@@ -1,6 +1,6 @@
 //Promise example
-let mypromise = new Promise(function(resolve, reject) {
-let success = false;
+let promise = new Promise(function(resolve, reject) {
+let success = true;
 
 if(success) {
     resolve("Task Completed");
@@ -11,7 +11,7 @@ else
 }
 });
 
-mypromise
+promise
 .then(function(result) {
 console.log(result);
 })
