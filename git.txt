@@ -1,0 +1,19 @@
+1. git config --global user.name
+
+2. git config --global user.email
+
+3. git init
+
+4. git clone <repo link>
+
+5. git status
+
+6. git add file.txt
+
+7. git rm file.txt
+
+8. git commit -m "message"
+
+9. git status
+
+10. 
