@@ -1,0 +1,106 @@
+1. var, let, const
+var:- var is function-scoped and can be redeclared and reassigned
+      it is oldest function scoped variable declaration
+      it is function scope not block scope
+      var is risky bcz it will ignore the blocks, it not good behavior
+
+example:
+if(true)
+{
+    var x = 5;
+}
+console.log(x);  op is 5
+
+: variable declaration
+var x = 10;
+console.log(x); op is 10
+
+: declared but undefined situation
+console.log(x);
+var x = 20; op is undefined
+
+
+let:- let is block scoped, safer than var
+      let can be reassigned but not redeclared
+
+example:
+let x = 10;
+console.log(x); op is 10
+
+if (true)
+{
+    let x =10;
+}
+console.log(x); op x will not defined
+
+in let TDZ (Temporal Dead Zone)
+TDZ:- TDZ means the variable exists but cannot be accessed before its declaration
+
+console.log(y);
+y = 15;   TDZ
+
+
+const:- const is block scoped, but can not be reassigned
+
+example:
+const user = {
+    name:"ABC"
+};
+console.log(user); op is ABC
+
+const user = {
+    name: "ABC"
+};
+
+user.name = "DEF";
+console.log(user); op is DEF
+
+combination of let and const:-
+const GST = 18;
+
+let price = 1000;
+let total = price + (price * GST / 100);
+console.log(total);
+
+var a = 1;
+let b = 2;
+const c = 3;
+console.log(a);
+console.log(b);
+console.log(c);
+
+
+
+2. HOISTING
+Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their
+containing scope during the compilation phase, before the code is executed
+
+examples:-
+greet();
+
+function greet() {
+    console.log("Hello!")
+}   op is Hello!
+
+
+var a = 1;
+let b = 2;
+const c = 3;
+console.log(a);
+console.log(b);
+console.log(c);
+
+function demo() {
+    console.log(a);
+    var a = 30;
+
+    function a() {
+        console.log("Hi");
+    }
+    console.log(a);
+}
+demo();
+
+
+
+3. == and === (Equality, StrictEquality)
