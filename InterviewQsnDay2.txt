@@ -1,0 +1,247 @@
+11. Arrow function:-
+Arrow functions are a more concise way to write functions in JavaScript. They have a more
+compact syntax compared to traditional function expressions and lexically bind this, meaning
+they inherit the this value from the enclosing scope.
+
+example:
+const greet = name => `Hello, ${name}`;
+console.log(greet("Arya")); op is Hello, Arya
+
+const add = (a, b) => a + b;
+console.log(add(5, 10)); //15
+
+function Person() {
+    this.name = "Arj";
+
+    setTimeout(() => {
+        console.log("My name is " + this.name);
+    }, 1000);
+}
+new Person();
+
+
+
+12. Synthetic events:-
+Synthetic events are a way to handle native DOM events in React. They are created by React to
+wrap and normalize native browser events, providing a consistent interface for event handling
+across different browsers.
+
+example:
+function App() {
+  const handleClick = (event) => {
+    console.log("Synthetic Event type:", event.type);
+    console.log("Target:", event.target);
+  };
+
+  return (
+    <button onClick={handleClick}>
+      Click Me
+    </button>
+  );
+}
+
+function App() {
+  const handleClick = (event) => {
+    console.log("Synthetic Event:", event);
+    console.log("Native Event:", event.nativeEvent);
+  };
+
+  return <button onClick={handleClick}>Click</button>;
+}
+
+
+
+13. Callbacks are functions that are passed as arguments to other functions and are executed after
+a certain task is completed or when a specific event occurs. They are commonly used in
+asynchronous programming to handle the result of an asynchronous operation.
+
+example:
+function greet(name, callback) {
+    console.log("Hello " + name);
+    callback();
+}
+
+function showMessage() {
+    console.log("Welcome to India!");
+}
+
+greet("Karthi", showMessage);
+
+function Data(callback) {
+    console.log("Code Running...");
+
+    setTimeout(() => {
+        callback("Data loaded successfully");
+    }, 2000);
+}
+
+Data((message) => {
+    console.log(message);
+});
+
+setTimeout(() => {
+    console.log("Step 1 done");
+
+    setTimeout(() => {
+        console.log("Step 2 done");
+
+        setTimeout(() => {
+            console.log("Step 3 done");
+        }, 1000);
+
+    }, 1000);
+
+}, 1000);
+
+
+
+14. Callback hell, how to over come:-
+Callback hell refers to the situation where multiple nested callbacks make the code hard to read
+and maintain. It can be overcome by using named functions, modularizing code, using promises,
+or using async/await.
+
+example:
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Step 1: User fetched");
+
+    setTimeout(() => {
+        console.log("Step 2: User profile loaded");
+
+        setTimeout(() => {
+            console.log("Step 3: User data processed");
+
+            setTimeout(() => {
+                console.log("Step 4: Final output shown");
+            }, 1000);
+
+        }, 1000);
+
+    }, 1000);
+
+}, 1000);
+
+console.log("End");
+
+
+
+15. ES6:-
+ES6, or ECMAScript 6, is the sixth major release of the ECMAScript language specification,
+which is the standard for JavaScript. ES6 introduced several new features and enhancements,
+including arrow functions, classes, template literals, let and const for variable declarations,
+and more.
+
+ex:
+spread operator
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4];
+console.log(arr2); op is [1,2,3,4]
+
+rest operator
+function sum(...num) {
+    return num.reduce((a, b) => a + b);
+}
+console.log(sum(1, 2, 3, 4)); op is 10
+
+
+
+
+
+16. Promises & async and await:-
+Promises are objects that represent the eventual completion or failure of an asynchronous
+operation. They have methods like then() and catch() to handle the result or error of the
+operation. async/await is a syntax for asynchronous programming that allows you to write
+asynchronous code in a synchronous-like manner using async functions and the await keyword.
+
+example:
+function Data() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Promise resolved");
+        }, 2000);
+    });
+}
+
+Data()
+.then(result => {
+    console.log(result);
+}).catch(error => {
+    console.log(error);
+});
+
+function Data1() {
+    return new Promise(resolve => {
+        setTimeout(() => resolve("Async/Await: Data"), 1000);
+    });
+}
+async function ABC() {
+    const result = await Data1();
+    console.log(result);
+}
+ABC();
+
+
+
+17. DOM:
+The Document Object Model (DOM) is a programming interface for web documents.
+It represents the structure of a document as a tree of nodes, where each node
+corresponds to a part of the document.
+DOM functions are used to manipulate the structure and content of a document, such
+    as adding or removing elements, changing styles, and handling events.
+
+example:
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Example</title>
+</head>
+<body>
+
+<h2 id="heading">Welcome</h2>
+<button id="btn">Click Me</button>
+
+<p id="message"></p>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+18. React program:
+function createCounter() {
+
+    let count = 0;
+    return function() {
+        return ++count;
+    };
+}
+
+const counter = createCounter();
+
+console.log(counter()); // Output: 1
+console.log(counter()); // Output: 2
+console.log(counter()); // Output: 3
+
+
+
+19. Remove duplicates from a list:
+function removeDuplicates(arr) {
+    return [...new Set(arr)];
+}
+const list = [1, 2, 3, 1, 2, 4, 5];
+const uniqueList = removeDuplicates(list);
+console.log(uniqueList);
+
+
+
+20. API data fetch:
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+    .then(response => response.json())
+    .then(data => {
+        console.log("API Data:", data);
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
