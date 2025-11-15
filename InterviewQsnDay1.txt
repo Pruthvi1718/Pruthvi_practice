@@ -72,8 +72,8 @@ console.log(c);
 
 
 2. HOISTING
-Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their
-containing scope during the compilation phase, before the code is executed
+Hoisting is a JavaScript mechanism where variable and function declarations are moved to the
+top of their containing scope during the compilation phase, before the code is executed
 
 examples:-
 greet();
@@ -104,3 +104,223 @@ demo();
 
 
 3. == and === (Equality, StrictEquality)
+== is a loose equality operator that performs type coercion, meaning it converts the
+operands to the same type before comparing them
+=== is a strict equality operator that does not perform type coercion and requires both
+the value and the type to be equal for it to return true
+
+example:
+console.log(5 == "5");    // true
+console.log(5 === "5");   // false
+
+
+
+4. Primitive and Non Primitive:-
+Primitive data types are immutable and stored directly in memory, while non-primitive data
+types are mutable and stored by reference. Primitive types include numbers, strings, booleans,
+null, and undefined, while non-primitive types include objects and functions
+
+
+
+5. this keyword
+This keyword in JavaScript refers to the object to which a function belongs or the object that is
+executing the current function. The value of this is determined by how a function is called
+
+example:
+const Student = {
+    name: "Amar",
+    course: "CS",
+    details : function () {
+        console.log("Student Name", this.name);
+        console.log("Student Course", this.course);
+    }
+};
+Student.details();
+
+const person = {
+  name: "ABC",
+  show: function () {
+    console.log("Normal Function:", this.name);
+
+    const arrow = () => {
+      console.log("Arrow Function:", this.name);
+    };
+
+    arrow();
+  }
+};
+
+person.show();
+
+
+
+6. Closure:-
+A closure is a function that has access to its own scope, the outer function's scope, and the global scope.
+Closures are useful for maintaining state in an application, creating private variables, and implementing data encapsulation
+
+example:
+function outer() {
+    let count = 0;
+
+function inner() {
+    count++;
+    console.log("Count:", count);
+}
+
+return inner;
+}
+
+const counter = outer();
+counter();
+counter();
+counter();
+
+
+
+7.IIFE
+IIFE stands for "Immediately Invoked Function Expression". It is a JavaScript function that is executed as soon as it is defined.
+ It is typically used to create a new scope to avoid polluting the global namespace
+
+ example:
+ (function (name) {
+  console.log("Hello " + name);
+})("Pruthvi");
+
+
+const counter = (function () {
+  let count = 0;
+
+  return {
+    increment() {
+      count++;
+      console.log("Count:", count);
+    },
+    decrement() {
+      count--;
+      console.log("Count:", count);
+    }
+  };
+})();
+
+counter.increment();
+counter.increment();
+counter.decrement();
+
+
+
+8. Higher order function
+Higher order functions are functions that operate on other functions by taking them as arguments or returning them.
+They enable functional programming concepts like composition, currying, and lazy evaluation
+
+example:
+map() with array
+const arr1 =[1,2,3,4,5,6,7,8,9,10]
+let result = arr1.filter(num=>num*3)
+console.log(result);
+
+map() with string
+const names = ["apple","berry","cherry"]
+const upperName = names.map(str=>str.toUpperCase());
+console.log(upperName);
+
+
+filter() with array
+const arr2 =[1,2,3,4,5,6,7,8,9,10]
+let result = arr2.filter(num=>num>3)
+console.log(result);
+
+filter() with string
+const words = ["apple", "berry", "pineapple"];
+const longWord = words.filter(word => word.length > 5);
+console.log(longWord);
+
+reduce() with array
+const num1 = [60,30,20,80]
+let Max = num1.reduce((max, num) =>
+num > max ? num : max
+);
+console.log(Max);
+
+reduce() with string
+const words = ["Proud","of","Indian"];
+const sentence = words.reduce((acc, words) => acc +" "+ words);
+console.log(sentence);
+
+
+
+9.Prototype:-
+The prototype is an object that is associated with every function and object in JavaScript.
+It is used to add properties and methods to objects, and it is also used in prototype chaining.
+
+example:
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.sayHello = function() {
+    console.log("Hello, my age is " + this.age);
+};
+
+const p1 = new Person("Karan", 23);
+p1.sayHello();
+
+
+function Student(name, dept) {
+    this.name = name;
+    this.dept = dept;
+}
+
+Student.prototype.display = function () {
+    console.log(`${this.name} from ${this.dept}`);
+};
+
+Student.prototype.greet = function () {
+    return `Hi ${this.name}, welcome!`;
+};
+const s1 = new Student("Arun", "CS");
+const s2 = new Student("Madhu", "AI");
+s1.display();
+console.log(s2.greet());
+
+
+
+10. Prototyping:-
+Prototype chaining is the mechanism in JavaScript where an object inherits properties and methods from its
+prototype object, which in turn can inherit from another prototype object. This creates a
+chain of prototypes, allowing for hierarchical inheritance
+
+example:
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.sayHello = function() {
+    console.log("Hello from " + this.name);
+};
+const p = new Person("Karan");
+p.sayHello();
+
+function Vehicle() {}
+Vehicle.prototype.start = function() {
+    console.log("Vehicle started");
+};
+
+function Car() {}
+Car.prototype = Object.create(Vehicle.prototype);
+Car.prototype.drive = function() {
+    console.log("Car is driving");
+};
+
+function BMW(model) {
+    this.model = model;
+}
+BMW.prototype = Object.create(Car.prototype);
+
+BMW.prototype.show = function() {
+    console.log("BMW model: " + this.model);
+};
+const b = new BMW("X5");
+
+b.start();
+b.drive();
+b.show();
