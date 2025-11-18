@@ -1,0 +1,190 @@
+1. CLOSURES:
+Closures are functions,an inner function can remembers the outer function, even outer function has returned or ends already.
+
+Advantages:
+Data Privacy
+Encapsulation
+Reduces Global Variable Usage
+Remembering data, after outer function ends
+
+Disadvantages:
+Higher Memory Usage
+Hard to Debug
+Reuse of code reduce readability of code
+
+
+Basic example:
+function outer(name) {
+    let message = "Hello, " + name;
+
+    function inner() {
+        console.log(message);
+    }
+    return inner;
+}
+const ABC = outer("Bangalore");
+ABC();
+
+
+
+Social media likes Counter example:
+function likeCounter() {
+  let likes = 0;
+
+  return function () {
+    likes++;
+    console.log("Likes count is:", likes);
+  };
+}
+const addLike = likeCounter();
+addLike();
+addLike();
+addLike();
+
+
+
+2. HOISTING:
+Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their containing scope
+during the compilation phase, before the code is executed.
+
+Advantages:
+Cleaner way of code
+better code structure
+You can use functions before they are declared
+
+Disadvantages:
+Hard to Debug
+Confusing for beginners
+let, const are TDZ
+
+Function declaration with HOISTING example:
+greet();
+function greet() {
+  console.log("Hello!");
+}
+
+TDZ: They are hoisted but cannot be used before initialization.
+example:
+console.log(a);
+var a = 10;
+
+var: var is js keyword,it is used to declare the variable and it is function scoped,
+redeclaration can be allowed.
+example:
+var a = 10;
+var a = 20;
+console.log(a);
+
+let: let is js keyword, it is used declares a block-scoped variable
+that can be reassigned but not re-declared in the same block.
+example:
+let count = 10;
+count = 20;
+console.log(count);
+
+const: const is js keyword, it is block scoped and variable can not be reassigned.
+example:
+const Pi = 3.142;
+console.log(Pi);
+
+
+3. Promises:
+Promises are cleaner way of javascript code, used to handle asynchronous operation then result or value of promises used
+currently,can be used in future or never used sometimes.
+
+Advantages:
+Better error handling
+Runs asynchronous function
+Promise chaining
+
+Disadvantages:
+Hard to learn beginners
+Promise Hell
+Debugging is tricky
+
+Four stages: a.Pending: Task is Ready to execute but in waiting state
+             b.Resolved: Task successfully completed
+             c.Rejected: Failed task
+             d.Finally: Shows both resolved and rejected tasks
+
+Error handling concept: a.then(): Used for Successful task or handle success
+                        b.catch(): Used to catch failures or errors
+
+example:
+let promise = new Promise((resolve, reject) => {
+  let success = true;
+
+  if (success) {
+    resolve("Task completed!");
+  } else {
+    reject("Task failed!");
+  }
+});
+promise
+  .then(result => console.log(result))
+  .catch(error => console.log(error));
+  .finally(() => console.log("Execution completed!"));
+
+
+Buy an order example:
+const step = (msg) => new Promise(res => setTimeout(() => res(msg), 500));
+
+step("1.Product searched")
+  .then(m => { console.log(m);
+       return step("2.Delivery available"); })
+  .then(m => { console.log(m);
+       return step("3.Order placed"); })
+  .then(m => { console.log(m);
+       return step("4.Payment successful"); })
+  .then(console.log)
+  .finally(() => console.log("Process completed"));
+
+
+
+4. Async and Await functions:
+Firstly, both are modern js keywords
+Async:
+It is used to define asynchronous function.
+It return a promise
+resolved value will be function returns
+If function throws an error, the promise will be rejected with that error
+
+Await:
+Await used inside as async function
+Used to pause the execution of the async function
+When a promise resolved, await returns the resolved value
+If promise is rejected, it throws an error
+
+Advantages:
+Cleaner way of code
+Easy to handle errors
+Avoid Callback Hell
+
+Disadvantages:
+Slow performance
+Hard to find errors
+
+basic examples:
+async function greet() {
+  return "Hello Dev";
+}
+greet().then(message => {
+  console.log(message);
+});
+
+async and await with promises:
+function Data1() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve("Data received after 2 seconds");
+    }, 2000);
+  });
+}
+
+async function Data2() {
+  console.log("Data Receiving...");
+  const result = await Data1();
+  console.log(result);
+}
+Data2();
+
