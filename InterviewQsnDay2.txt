@@ -68,7 +68,6 @@ function func1(x) {
 const double = func1(2);
 console.log(double(10));
 
-
 Real world example Discount generator:
 function discountGenerator(rate) {
   return function(price) {
@@ -91,7 +90,6 @@ const prices = [100, 200, 300];
 const finalPrices = prices.map(price => price + price * 0.18);
 console.log(finalPrices);
 
-
 filter():
 Returns elements that match a condition.
 or
@@ -102,7 +100,6 @@ example:
 const num1 = [5,6,7,8,9,10];
 const filtered = num1.filter(n => n > 8);
 console.log(filtered);
-
 
 Real time E-commerce product price:
 const products = [
@@ -223,6 +220,139 @@ person.showName();
 
 
 Explicit binding call(), apply(), bind():
-call()
-Pass arguments one by one.
+
+call(): Call a function with specific this value
 example:
+function greet() {
+  console.log("Hello " + this.name);
+}
+const user = { name: "Rocky" };
+greet.call(user);
+
+
+apply(): Similar to call function, arguments should be in array.
+example:
+function fun1(city, age) {
+  console.log(this.name + " from " + city + ", age " + age);
+}
+const user = { name: "Rocky" };
+fun1.apply(user, ["Bangaluru", 22]);
+
+
+bind(): Returns a new function with fixed this keyword
+example:
+function show() {
+  console.log("User: " + this.name);
+}
+const user = { name: "Rocky" };
+const newFunc = show.bind(user);
+newFunc();
+
+
+New binding: this with Constructor & new keyword:
+It refers to newly created object
+
+example:
+function User(name, age) {
+  this.name = name;
+  this.age = age;
+}
+const u1 = new User("Aru", 24);
+console.log(u1.name);
+
+
+this with Arrow function(lexical this):
+In this user can take this from outer function.
+ example:
+ const name = "Bhuvan";
+const show = () => {
+  console.log(this.name);
+};
+show();
+
+this with DOM:
+example: this refers to button
+<button onclick="show(this)">Click</button>
+<script>
+function show(elem) {
+  console.log(elem.innerText); // "Click"
+}
+</script>
+
+this with class:
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+  show() {
+    console.log(this.name);
+  }
+}
+const u = new User("Amruth");
+u.show();
+
+Advantages:
+Eliminates the need to repeat object names
+Useful for oop's
+Perfect for event handling (DOM)
+Works well with constructor
+
+Disadvantages:
+Context changes depending on how it is called
+Hard to understand nested this
+Arrow do not have thier own this
+
+
+3. PROTOTYPE:
+prototype important concept of js, it means objects inherit properties
+and methods from other objects.
+It is also called internal hidden property
+accessible as (__proto__)
+
+example:
+function Person() {
+  this.name = "Pruthvi";
+}
+
+Person.prototype.age = 22;
+let p = new Person();
+
+console.log(p.name);
+console.log(p.age);
+
+Prototype Chaining:
+Prototype Chaining in JavaScript, it is the process of searching for properties and methods
+in the object's prototype and its ancestor prototypes.
+
+example:
+let a = { x: 10 };
+let b = Object.create(a);
+console.log(b.x);
+
+
+Prototype inheritance: Prototype inheritance is an object can use properties and
+methods of another object through the prototype chain
+
+example:
+const animal = {
+  eats: true,
+};
+
+const dog = {
+  barks: true,
+};
+
+dog.__proto__ = animal;
+console.log(dog.eats);
+console.log(dog.barks);
+
+Advantages:
+Less memory usage
+Supports inheritance
+
+Disadvantages:
+Long chain works slowly
+Accidental Overriding
+
+
+
