@@ -311,13 +311,13 @@ Arrow do not have thier own this
 
 
 3. PROTOTYPE:
-prototype important concept of js, it means one objects depends on other objects.
+prototype important concept of js, it means one object depends on other object.
 It is also called internal hidden property
 via [prototype]
 
 example:
 function Person() {
-  this.name = "Aman";
+  this.name = "Amar";
 }
 Person.prototype.age = 22;
 let p = new Person();
