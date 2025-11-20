@@ -1,6 +1,8 @@
 1. HIGHER ORDER FUNCTIONS:
 Higher order function are important concept of javascript,
-it takes function as a argument return function as a result.
+it takes function as a argument and return as a function in
+some condition return direct values based on inputs.
+In map, filter, reduce function passed as a arguments(values).
 It enables function composition, currying and lazy evaluation.
 
 Function Composition:
@@ -10,7 +12,7 @@ example:
 const add = x => x + 2;
 const multiply = x => x * 3;
 const result = multiply(add(5));
-console.log(result);
+console.log(result); op is 21
 
 Currying:
 Function it allows multiple arguments but it takes one argument at a time.
@@ -26,7 +28,6 @@ Lazy evaluation: It delaying the executed value until it is actually required.
 It does not run immediately
 example:
 function* numbers() {
-  console.log("Value generated!");
   yield 10;
 }
 const n = numbers();
@@ -50,7 +51,7 @@ function greet(name) {
   console.log("Hello " + name);
 }
 function UserInput(callback) {
-  const user = "ABhi";
+  const user = "ABHII";
   callback(user);
 }
 UserInput(greet);
@@ -66,7 +67,7 @@ function func1(x) {
   }
 }
 const double = func1(2);
-console.log(double(10));
+console.log(double(10)); op is 20
 
 Real world example Discount generator:
 function discountGenerator(rate) {
@@ -171,25 +172,28 @@ students.sort();
 console.log(students);
 
 Advantages:
+Reduce duplications
 Codes cleaner and shorter
 Reusability
 less errors
 
 Disadvantages:
 Callback hell
-Complex debugging
+Complex in debugging
 Over use makes confusing
 
 
 
-2. this Keyword:
-this is a special type of keyword, refers to the object that is currently executing the code.
-Value of this not depend on where function is, it depends on function is called
 
-Types of this function: 1.Default Binding - Normal function
+2. this Keyword:
+this is a special type of keyword, refers to the object that is currently executing code.
+Value of this is not depend on where function is,
+it depends on how function is called
+
+Types of this function: 1.Default Binding - Normal function - global object
                         2.Implicit Binding - function called using an object
                         3.Explicit Binding - call(), apply(), bind()
-                        4.New Binding - this with constructor
+                        4.New Binding - this with constructor(new keyword)
                         5.this with arrow function
                         6.this with DOM
 
@@ -226,7 +230,7 @@ example:
 function greet() {
   console.log("Hello " + this.name);
 }
-const user = { name: "Rocky" };
+const user = { name: "Alice" };
 greet.call(user);
 
 
@@ -263,8 +267,9 @@ console.log(u1.name);
 
 this with Arrow function(lexical this):
 In this user can take this from outer function.
- example:
- const name = "Bhuvan";
+Arrow does not have their own this.
+example:
+const name = "Bhuvan";
 const show = () => {
   console.log(this.name);
 };
@@ -303,17 +308,18 @@ Hard to understand nested this
 Arrow do not have thier own this
 
 
+
+
 3. PROTOTYPE:
 prototype important concept of js, it means objects inherit properties
 and methods from other objects.
 It is also called internal hidden property
-accessible as (__proto__)
+via [prototype]
 
 example:
 function Person() {
-  this.name = "Pruthvi";
+  this.name = "Aman";
 }
-
 Person.prototype.age = 22;
 let p = new Person();
 
