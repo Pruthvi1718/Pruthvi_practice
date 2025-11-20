@@ -311,8 +311,7 @@ Arrow do not have thier own this
 
 
 3. PROTOTYPE:
-prototype important concept of js, it means objects inherit properties
-and methods from other objects.
+prototype important concept of js, it means one objects depends on other objects.
 It is also called internal hidden property
 via [prototype]
 
@@ -325,6 +324,7 @@ let p = new Person();
 
 console.log(p.name);
 console.log(p.age);
+
 
 Prototype Chaining:
 Prototype Chaining in JavaScript, it is the process of searching for properties and methods
