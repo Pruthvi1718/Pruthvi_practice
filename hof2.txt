@@ -1,0 +1,183 @@
+HIGHER ORDER FUNCTIONS:
+Higher order function are important concept of javascript,
+it takes function as a argument and return as a function in
+some condition return direct values based on inputs.
+In map, filter, reduce function passed as a arguments(values).
+It enables function composition, currying and lazy evaluation.
+
+Function Composition:
+It means combining two or more functions so that the output of one function
+becomes the input of another function.
+example:
+const add = x => x + 2;
+const multiply = x => x * 3;
+const result = multiply(add(5));
+console.log(result); op is 21
+
+Currying:
+Function it allows multiple arguments but it takes one argument at a time.
+example:
+function add(a) {
+  return function(b) {
+    return a + b;
+  }
+}
+console.log(add(5)(3));
+
+Lazy evaluation: It delaying the executed value until it is actually required.
+It does not run immediately
+example:
+function* numbers() {
+  yield 10;
+}
+const n = numbers();
+console.log(n.next().value);
+
+
+Types: 1.Callback function
+       2.Function return another function
+       3.map
+       4.filter
+       5.reduce
+       6.forEach
+       7.find
+       8.sort
+
+CALLBACK FUNCTION:
+Callback is a function that function passes an argument to another function, execute it later.
+
+example:
+function greet(name) {
+  console.log("Hello " + name);
+}
+function UserInput(callback) {
+  const user = "ABHII";
+  callback(user);
+}
+UserInput(greet);
+
+
+FUNCTION CALL ANOTHER FUNCTION:
+A higher-order function can return another function.
+
+Example:
+function func1(x) {
+  return function(y) {
+    return x * y;
+  }
+}
+const double = func1(2);
+console.log(double(10)); op is 20
+
+Real world example Discount generator:
+function discountGenerator(rate) {
+  return function(price) {
+    return price - (price * rate);
+  }
+}
+const studentDiscount = discountGenerator(0.10);
+console.log(studentDiscount(500));
+
+
+map():
+Creates a new array by transforming each element.
+example:
+const number = [1,2,3];
+const squares = number.map(n => n * n);
+console.log(squares);
+
+Real world example GST calculator:
+const prices = [100, 200, 300];
+const finalPrices = prices.map(price => price + price * 0.18);
+console.log(finalPrices);
+
+filter():
+Returns elements that match a condition.
+or
+The resulted elements are copied from the original elements.
+It will not give new elements.
+
+example:
+const num1 = [5,6,7,8,9,10];
+const filtered = num1.filter(n => n > 8);
+console.log(filtered);
+
+Real time E-commerce product price:
+const products = [
+  { name: "Mouse", price: 400 },
+  { name: "Keyboard", price: 800 },
+  { name: "SSD", price: 500 }
+];
+const budgetItems = products.filter(p => p.price <= 600);
+console.log(budgetItems);
+
+
+reduce():
+Reduce used to multiple values into single value. Performs sum operation.
+example:
+const num2 = [1,2,3,4,5];
+const sum = num2.reduce((acc, val) => acc + val, 0);
+console.log(sum);
+
+Real time example cart total calculate:
+const cart = [
+  { price: 200 },
+  { price: 400 },
+  { price: 150 }
+];
+const total = cart.reduce((acc, item) => acc + item.price, 0);
+console.log(total);
+op is total price of all product
+
+
+forEach(): Runs a function for every element (no return value).
+example:
+const numbers = [1,2,3,4,5];
+numbers.forEach(num => {
+  console.log(num);
+});
+
+Real world example Display products:
+const products = ["Shoes", "Keyboard", "Watch", "Bag"];
+products.forEach(item => {
+  console.log("Product:", item);
+});
+
+
+
+find(): Returns the first element that matches a condition.
+example:
+const num3 = [4,7,10];
+const result = num3.find(n => n > 5);
+console.log(result);
+
+Realtime example select employee:
+const employees = [
+  { name: "emp1", email: "emp1@gmail.com" },
+  { name: "emp2", email: "emp2@gmail.com" }
+];
+const emp = employees.find(e => e.name === "emp1");
+console.log(emp);
+
+
+sort: Arrange elements ascending or descending manner.
+example:
+const numbers = [5, 1, 8, 3];
+numbers.sort((a, b) => a - b);
+console.log(numbers);
+
+Real time example sort students name:
+const students = ["Raj", "Pavan", "Amit", "Neha"];
+students.sort();
+console.log(students);
+
+Advantages:
+Reduce duplications
+Codes cleaner and shorter
+Reusability
+less errors
+
+Disadvantages:
+Callback hell
+Complex in debugging
+Over use makes confusing
