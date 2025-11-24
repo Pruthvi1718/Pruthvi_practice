@@ -1,0 +1,121 @@
+2. this Keyword:
+this is a special type of keyword, refers to the object that is currently executing code.
+Value of this is not depend on where function is,
+it depends on how function is called
+
+Types of this function: 1.Default Binding - Normal function - global object
+                        2.Implicit Binding - function called using an object
+                        3.Explicit Binding - call(), apply(), bind()
+                        4.New Binding - this with constructor(new keyword)
+                        5.this with arrow function
+                        6.this with DOM
+
+
+Default binding(Regular or Normal function call):
+In this function call refers to global object.
+example:
+function showName() {
+  console.log(this.name);
+}
+const name = "Bengaluru";
+showName();
+
+
+Implicit Binding - function called using an object:
+this refers to object
+(object.method())
+example:
+const person = {
+  name: "Amar",
+  age: 24,
+  showName: function () {
+    console.log(this.name);
+    console.log(this.age);
+  }
+};
+person.showName();
+
+
+Explicit binding call(), apply(), bind():
+
+call(): Call a function with specific this value
+example:
+function greet() {
+  console.log("Hello " + this.name);
+}
+const user = { name: "Alice" };
+greet.call(user);
+
+
+apply(): Similar to call function, arguments should be in array.
+example:
+function fun1(city, age) {
+  console.log(this.name + " from " + city + ", age " + age);
+}
+const user = { name: "Rocky" };
+fun1.apply(user, ["Bangaluru", 22]);
+
+
+bind(): Returns a new function with fixed this keyword
+example:
+function show() {
+  console.log("User: " + this.name);
+}
+const user = { name: "Rocky" };
+const newFunc = show.bind(user);
+newFunc();
+
+
+New binding: this with Constructor & new keyword:
+It refers to newly created object
+
+example:
+function User(name, age) {
+  this.name = name;
+  this.age = age;
+}
+const u1 = new User("Aru", 24);
+console.log(u1.name);
+
+
+this with Arrow function(lexical this):
+In this user can take this from outer function.
+Arrow does not have their own this.
+example:
+const name = "Bhuvan";
+const show = () => {
+  console.log(this.name);
+};
+show();
+
+this with DOM:
+example: this refers to button
+<button onclick="show(this)">Click</button>
+<script>
+function show(elem) {
+  console.log(elem.innerText); // "Click"
+}
+</script>
+
+this with class:
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+  show() {
+    console.log(this.name);
+  }
+}
+const u = new User("Amruth");
+u.show();
+
+Advantages:
+Eliminates the need to repeat object names
+Useful for oop's
+Perfect for event handling (DOM)
+Works well with constructor
+
+Disadvantages:
+Context changes depending on how it is called
+Hard to understand nested this
+Arrow do not have thier own this
