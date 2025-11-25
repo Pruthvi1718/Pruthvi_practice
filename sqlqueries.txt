@@ -163,6 +163,7 @@ select * from Customers where first_name = 'john' or "Doe";
 +-------------+------------+-----------+------+---------+
 2 rows in set, 1 warning (0.00 sec)
 
+IN:
 select * from Customers where country IN ('USA');
 +-------------+------------+-----------+------+---------+
 | customer_id | first_name | last_name | age  | country |
