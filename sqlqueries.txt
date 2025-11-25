@@ -1,0 +1,304 @@
+SQL: Structured Query Language
+sql is a standard programming language used to store, manage, and retrieve data from a relational database.
+Arrange the data in rows and columns.
+
+most used bds:-
+mysql
+postgresql
+oracle db
+sqlite
+sqlserver
+
+
+
+TABLE CREATION Customers:
+CRUD(Create,Read,Update,Delete):
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    age INT,
+    country VARCHAR(50)
+);
+
+describe table Customers;
+| id | select_type | table     | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+-----------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | Customers | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    1 |   100.00 | NULL  |
+
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| customer_id | int         | NO   | PRI | NULL    |       |
+| first_name  | varchar(50) | YES  |     | NULL    |       |
+| last_name   | varchar(50) | YES  |     | NULL    |       |
+| age         | int         | YES  |     | NULL    |       |
+| country     | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+
+INSERT DATA:
+INSERT INTO Customers(customer_id, first_name, last_name, age, country)
+VALUES(1, 'John', 'Doe', 31, 'USA'),
+(2, 'Robert', 'Luna', 22, 'USA'),
+(3, 'David', 'Ruby', 22, 'UK'),
+(4, 'John', 'Rein', 31, 'UK'),
+(5, 'Betty', 'Doe', 28, 'UAE');
+
+READ: Select records
+select * from Customers;
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           2 | Robert     | Luna      |   22 | USA     |
+|           3 | David      | Ruby      |   22 | UK      |
+|           4 | John       | Rein      |   31 | UK      |
+|           5 | Betty      | Doe       |   28 | UAE     |
++-------------+------------+-----------+------+---------+
+5 rows in set (0.00 sec)
+
+
+UPDATE: Modify table
+INSERT INTO Customers(customer_id, first_name, last_name, age, country)
+VALUES(6, 'Emma', 'Doe', 32, 'France');
+
+select * from Customers;
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           2 | Robert     | Luna      |   22 | USA     |
+|           3 | David      | Ruby      |   22 | UK      |
+|           4 | John       | Rein      |   31 | UK      |
+|           5 | Betty      | Doe       |   28 | UAE     |
+|           6 | Emma       | Doe       |   32 | France  |
++-------------+------------+-----------+------+---------+
+6 rows in set (0.00 sec)
+
+
+DELETE: Remove records
+DELETE from Customers where customer_id = 6;
+
+select * from Customers;
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           2 | Robert     | Luna      |   22 | USA     |
+|           3 | David      | Ruby      |   22 | UK      |
+|           4 | John       | Rein      |   31 | UK      |
+|           5 | Betty      | Doe       |   28 | UAE     |
++-------------+------------+-----------+------+---------+
+5 rows in set (0.00 sec)
+
+
+
+FILTERING QUERIES WITH WHERE:-
+Filters: Filters in SQL are conditions used to select specific rows from a table.
+
+2 clauses: WHERE & HAVING
+Where: It is used to filter individual rows(before grouping)
+
+select * from Customers where country = 'USA';
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           2 | Robert     | Luna      |   22 | USA     |
++-------------+------------+-----------+------+---------+
+2 rows in set (0.00 sec)
+
+AGE:
+select * from Customers where age > 25;
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           4 | John       | Rein      |   31 | UK      |
+|           5 | Betty      | Doe       |   28 | UAE     |
++-------------+------------+-----------+------+---------+
+3 rows in set (0.00 sec)
+
+select * from Customers where first_name = 'john';
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           4 | John       | Rein      |   31 | UK      |
++-------------+------------+-----------+------+---------+
+2 rows in set (0.00 sec)
+
+select * from Customers where last_name = 'Doe';
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           5 | Betty      | Doe       |   28 | UAE     |
++-------------+------------+-----------+------+---------+
+2 rows in set (0.00 sec)
+
+
+BETWEEN: AND:
+select * from Customers where age between 20 AND 35;
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           2 | Robert     | Luna      |   22 | USA     |
+|           3 | David      | Ruby      |   22 | UK      |
+|           4 | John       | Rein      |   31 | UK      |
+|           5 | Betty      | Doe       |   28 | UAE     |
++-------------+------------+-----------+------+---------+
+5 rows in set (0.00 sec)
+
+
+OR:
+select * from Customers where first_name = 'john' or "Doe";
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           4 | John       | Rein      |   31 | UK      |
++-------------+------------+-----------+------+---------+
+2 rows in set, 1 warning (0.00 sec)
+
+select * from Customers where country IN ('USA');
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           2 | Robert     | Luna      |   22 | USA     |
++-------------+------------+-----------+------+---------+
+2 rows in set (0.00 sec)
+
+LIKE: %
+select * from Customers where first_name LIKE 'j%';
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           4 | John       | Rein      |   31 | UK      |
++-------------+------------+-----------+------+---------+
+2 rows in set (0.00 sec)
+
+
+
+ORDER BY: Used to order either ascending or descending order of rows
+ASC:
+select * from Customers order by age ASC;
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           2 | Robert     | Luna      |   22 | USA     |
+|           3 | David      | Ruby      |   22 | UK      |
+|           5 | Betty      | Doe       |   28 | UAE     |
+|           1 | John       | Doe       |   31 | USA     |
+|           4 | John       | Rein      |   31 | UK      |
++-------------+------------+-----------+------+---------+
+
+DESC:
+select * from Customers order by country desc;
++-------------+------------+-----------+------+---------+
+| customer_id | first_name | last_name | age  | country |
++-------------+------------+-----------+------+---------+
+|           1 | John       | Doe       |   31 | USA     |
+|           2 | Robert     | Luna      |   22 | USA     |
+|           3 | David      | Ruby      |   22 | UK      |
+|           4 | John       | Rein      |   31 | UK      |
+|           5 | Betty      | Doe       |   28 | UAE     |
++-------------+------------+-----------+------+---------+
+5 rows in set (0.00 sec)
+
+
+
+AGGREGATORS:
+It is function, performing calculation on a set of values and give single value.
+COUNT, MAX, MIN, AVG, SUM
+
+Count:
+select COUNT(*) as total_Customers from Customers;
++-----------------+
+| total_Customers |
++-----------------+
+|               5 |
++-----------------+
+1 row in set (0.01 sec)
+
+MIN:
+select MIN(age) as youngest from Customers;
++----------+
+| youngest |
++----------+
+|       22 |
++----------+
+1 row in set (0.00 sec)
+
+MAX:
+select MAX(age) as oldest from Customers;
++--------+
+| oldest |
++--------+
+|     31 |
++--------+
+1 row in set (0.00 sec)
+
+AVG:
+select AVG(age) as avg_age from Customers;
++---------+
+| avg_age |
++---------+
+| 26.8000 |
++---------+
+1 row in set (0.00 sec)
+
+SUM:
+select SUM(age) as Total_age from Customers;
++-----------+
+| Total_age |
++-----------+
+|       134 |
++-----------+
+1 row in set (0.00 sec)
+
+
+
+GROUP BY:
+It is used to group rows based on common values and to apply with aggregate function.
+It will merge 2 or more rows for results.
+
+Count customers by country:
+select country, Count(*) as Total_customers from Customers GROUP BY country;
++---------+-----------------+
+| country | Total_customers |
++---------+-----------------+
+| USA     |               2 |
+| UK      |               2 |
+| UAE     |               1 |
++---------+-----------------+
+3 rows in set (0.00 sec)
+
+Average age by country:
+select country, COUNT(*) as avg_age From Customers GROUP BY country;
++---------+---------+
+| country | avg_age |
++---------+---------+
+| USA     |       2 |
+| UK      |       2 |
+| UAE     |       1 |
++---------+---------+
+3 rows in set (0.00 sec)
+
+
+
+HAVING: Having is used to filtering the groups.
+
+Countries with more than 1 customer:
+select country, COUNT(*) as Total_customers from Customers GROUP BY country HAVING COUNT(*) > 1;
++---------+-----------------+
+| country | Total_customers |
++---------+-----------------+
+| USA     |               2 |
+| UK      |               2 |
++---------+-----------------+
+2 rows in set (0.00 sec)
