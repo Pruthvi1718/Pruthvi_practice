@@ -1,0 +1,57 @@
+PYTHON:
+Python is a high level, object oriented, interpreted programming language used for web
+development, automation, AI&ML and more.
+It is generally known for simple syntax, huge libraries support and fast development.
+No need of semi colon at code end.
+
+Key features:
+Easy to read and write
+interpreted
+Object oriented
+Platform independent
+
+example:
+name = "Pruthvi"
+age = 22
+
+print("Hello,", name)
+print("Your age is:", age)
+
+Example with function:
+def add(a, b):
+    return a + b
+
+print(add(5, 3))
+
+Variables:
+A variable in Python is a name used to store data in memory.
+It can be reusable
+Perform calculation
+
+example:
+name = Pruthvi
+x = 10
+a, b, c = 10, 20, 30
+p = q = r = 200
+
+
+LIST:
+A list in python is an ordered collection of multiple elements.
+It is mutable
+It is indexed
+can store different data Types
+starting from index [0]
+
+examples:
+my_list = [10,20,30,40]
+print(my_list)
+
+Access list items:
+numbers = [10, 20, 30, 40, 50]
+print(numbers[0])     # 10
+print(numbers[-1])    # 50
+print(numbers[1:4])   # [20, 30, 40]
+
+List methods:
+
+
