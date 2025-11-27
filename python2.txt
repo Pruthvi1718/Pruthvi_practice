@@ -1,0 +1,243 @@
+PYTHON OPERATIONS: It performs operations with 2 values.
+                   -Arithmetic
+                   -Relational/Comparison
+                   -Logical
+                   -Assignment
+                   -Bitwise
+                   -Unary
+                   -Ternary
+
+
+ARITHMETIC OP: Used to perform mathematical operations
++	Addition	10 + 5 → 15
+-	Subtraction	10 - 5 → 5
+*	Multiplication	10 * 5 → 50
+/	Division (float)	10 / 4 → 2.5
+//	Floor division	10 // 4 → 2
+%	Modulus (remainder)	10 % 4 → 2
+**	Exponentiation	2 ** 3 → 8
+
+example:
+a = 10
+b = 3
+
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+print(a // b)
+print(a % b)
+print(a ** b)
+
+
+RELATIONAL/COMPARISON OPERATOR: Used to compare values, result T/F.
+==	Equal to
+!=	Not equal to
+>	Greater than
+<	Less than
+>=	Greater or equal
+<=	Less or equal
+
+example:
+a = 10
+b = 5
+
+print(a > b)    # True
+print(a == b)   # False
+print(a != b)   # True
+
+
+LOGICAL OPERATIONS: Used to combine conditional statements.
+and - True if both conditions are True
+or - True if any condition is True
+not - Reverses boolean value
+
+example:
+x = 10
+print(x > 5 and x < 20)  # True
+print(x > 5 or x < 5)    # True
+print(not(x > 5))        # False
+
+
+ASSIGNMENT OPERATOR: Assign and update values.
+=	Assign	x = 5
++=	x = x + 5	x += 5
+-=	x = x - 5	x -= 5
+*=	x = x * 5	x *= 5
+/=	x = x / 5	x /= 5
+%=	x = x % 5	x %= 5
+**=	x = x ** 5	x **= 5
+//=	x = x // 5	x //= 5
+
+example:
+x = 10
+x += 5
+print(x) #15
+
+
+BITWISE OPERATIONS: Works on bits (0's and 1's)
+&	Bitwise AND
+`	`
+^	XOR
+~	NOT
+<<	Left shift
+>>	Right shift
+
+example:
+a = 5   # (0101)
+b = 3   # (0011)
+
+print(a & b)   # 1
+print(a | b)   # 7
+print(a ^ b)   # 6
+print(a << 1)  # 10
+print(a >> 1)  # 2
+
+
+UNARY OPERATIONS: Works on single item or value.
+Unary minus → -x
+Unary plus → +x
+Logical NOT → not x
+
+example:
+a = 5
+print(-a)
+print(+a)
+print(not False)
+
+
+TERNARY OPERATION: It is one line if else expression.
+condition ? True : False;
+
+example:
+age = 18
+result = "Adult" if age >= 18 else "Minor"
+print(result)
+
+
+
+CONDITIONAL ST & LOOPS IN PYTHON:
+CONDITIONAL STATEMENTS:
+It allows the program to make decision based on condition.
+- if
+- if-else
+- if-elif-else
+- Nested if
+- Ternary
+
+if:
+Used to execute a block of code if a condition is TRUE.
+example:
+age = 20
+if age >= 18:
+    print("Eligible to vote")
+
+
+if-else:
+Executes one block if True, otherwise another.
+example:
+age = 15
+if age >= 18:
+    print("Eligible to vote")
+else:
+    print("Not eligible")
+
+
+if-elif-else:
+Used when multiple conditions need to be checked.
+example:
+marks = 85
+
+if marks >= 90:
+    print("Grade A")
+elif marks >= 75:
+    print("Grade B")
+elif marks >= 60:
+    print("Grade C")
+else:
+    print("Fail")
+
+
+Nested if:
+one if inside if another.
+example:
+age = 22
+citizen = True
+
+if age >= 18:
+    if citizen:
+        print("Eligible for voting")
+    else:
+        print("Not a citizen")
+else:
+    print("Under age")
+
+
+Ternary: It is One line if else statement.
+age = 18
+result = "Adult" if age >= 18 else "Minor"
+print(result)
+
+
+
+
+LOOPING STATEMENTS:
+Loops are used to repeat block of code multiple times.
+- for
+- while
+- Nested
+
+Control st:
+-break
+-continue
+
+for:
+Used to iterate over sequences: lists, tuples, STRINGS
+
+example:
+for i in range(5):
+    print(i)
+
+names = ["ram", "raj", "ravi"]
+for name in names:
+    print(name)
+
+
+while:
+Repeats a block until the condition becomes false.
+
+example:
+i = 1
+while i <= 5:
+    print(i)
+    i += 1
+
+Nested loops:
+A loop inside another loop.
+
+example:
+for i in range(3):
+    for j in range(2):
+        print(i, j)
+
+
+Control loops: Used for stop and skip code
+break:
+stops the entire loop
+
+example:
+for i in range(10):
+    if i == 5:
+        break
+    print(i)
+
+
+continue:
+skips the current iterations.
+
+example:
+for i in range(6):
+    if i == 3:
+        continue
+    print(i)
+
