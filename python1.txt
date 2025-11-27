@@ -23,10 +23,10 @@ def add(a, b):
 
 print(add(5, 3))
 
-Variables:
+VARIABLE:
 A variable in Python is a name used to store data in memory.
 It can be reusable
-Perform calculation
+Perform calculations
 
 example:
 name = Pruthvi
@@ -37,10 +37,10 @@ p = q = r = 200
 
 LIST:
 A list in python is an ordered collection of multiple elements.
-It is mutable
-It is indexed
-can store different data Types
-starting from index [0]
+-It is mutable
+-it is indexed
+-can store different data Types
+-starting from index [0]
 
 examples:
 my_list = [10,20,30,40]
@@ -52,6 +52,234 @@ print(numbers[0])     # 10
 print(numbers[-1])    # 50
 print(numbers[1:4])   # [20, 30, 40]
 
-List methods:
+List methods:  .append()
+               .extend()
+               .insert()
+               .remove()
+               .pop()
+               .sort()
+
+append(): Add item at end
+example:
+a = [1, 2, 3]
+a.append(4)
+print(a)
+
+extend(): Add multiple items
+example:
+a = [1, 2, 3]
+b = [4, 5]
+a.extend(b)
+print(a)
+
+insert(): Add item at specific index
+example:
+a = [1, 2, 3]
+a.insert(4, 5)
+print(a)
+
+remove(): Remove specific value
+example:
+a = [10, 20, 30]
+a.remove(30)
+print(a)
+
+pop(): Remove item by index
+example:
+a = ["A", "B", "C"]
+a.pop(2)
+print(a)
+
+sort(): Sort the list
+example:
+a = [30, 10, 20]
+a.sort()
+print(a)
+
+reverse(): Reverse list
+example:
+a = [1, 2, 3]
+a.reverse()
+print(a)
 
 
+Coversion of String to list:
+using split()
+example:
+text = "apple banana cherry"
+result = text.split()
+print(result)
+
+
+
+DICTIONARY: A dictionary in python is unordered, mutable collection that stores data in key-value pairs.
+-keys are unique
+-any data Types
+-use {}
+
+example:
+person = {
+    "name": "Pruthvi",
+    "age": 23,
+    "city": "Bengaluru"
+}
+print(person)
+
+Dictionary methods: keys()
+                    values()
+                    items()
+                    update()
+                    clear()
+
+Access dictionary values:
+using key:
+print(person["name"])
+
+using get():
+print(person.get("age"))
+
+
+Adding and Updating values:
+add new key value pair
+example:
+person["email"] = "pruthvi@gmail.com"
+
+Update existing values:
+person["city"] = "Tumakuru"
+
+
+Remove items:
+remove by key:
+person.pop("age")
+
+removes last item:
+person.popitem()
+
+delete key value:
+del person
+
+clear: Del entire dictionary
+example:
+person = {
+    "name": "Pruthvi",
+    "age": 23,
+    "city": "Bengaluru"
+}
+person.clear()
+print(person) #output: {}
+
+
+
+TUPLE: A tuple in python is an ordered, immutable collection of items.
+-can not modify
+-create using ()
+-faster than list
+-fixed data
+-memory efficient
+-allows duplicate values
+
+example:
+my_tuple = (10, 20, 30)
+pirnt(my_tuple)
+
+mixed tuple:
+my_tuple = (1, "Pruthvi", 3.142, True)
+
+
+Tuple methods: -count()
+               -index()
+
+count(): Count occurrences
+example:
+t = (1, 2, 2, 3)
+print(t.count(2)) #2
+
+index(): find index values
+example:
+t = (10, 20, 30)
+print(t.index(20))
+
+
+
+SETS: A set in python is an unordered, unindexed, mutable collection of unique values.
+-no duplicate values, removes automatically
+-unordered
+-using {}
+
+example:
+my_set = {1, 2, 3}
+print(my_set)
+
+empty set:
+s = {}
+
+Set operations: -union() or |
+                -intersection() or &
+                -difference() or -
+
+union(): adds all unique items from both SETS
+example:
+a = {1, 2, 3}
+b = {3, 4, 5}
+print(a | b)
+or
+print(a.union(b))
+
+intersection(): common items
+example:
+a = {1, 2, 3}
+b = {3, 4, 5}
+print(a & b)
+or
+print(a.intersecion(b))
+
+difference: items in A not in b
+a = {1, 2, 3}
+b = {3, 4, 5}
+print(a - b)
+or
+print(a.differnec(b))
+
+
+
+STRINGS: A string in python is a sequence of characters enclosed in single quotes('')
+or double quotes("") or triple(""")
+-immutable
+-string slicing can be development
+-use ', ", """
+
+example:
+s1 = 'hello!'
+s2 = "Python"
+s3 = """This is a string."""
+
+access string index:
+name = "Pruthvi"
+print(name[0]) #P
+print(name[3]) #t
+print(name[-1]) #i
+
+string slicing: Extract part of string
+example:
+text = "PythonString"
+print(text[0:6]) # Python
+print(text[6:]) # String
+print(text[:6]) # Python
+print(text[-6:]) # String
+
+string concat: merge 2 STRINGS
+example:
+a = "Hello"
+b = "Pruthvi"
+print(a + b) #Hello Pruthvi
+
+string repeatation:
+print("Hi " * 3) # Hi Hi Hi
+
+
+Convert list to string:
+using join()
+example:
+my_list = ["apple", "banana", "cherry"]
+result = " ".join(my_list)
+print(result)
