@@ -23,6 +23,17 @@ def add(a, b):
 
 print(add(5, 3))
 
+
+
+Python data types: -Numeric type
+                   -String type
+                   -Boolean type
+                   -Set type
+                   -Dictionary type
+                   -None type - obsence of values
+
+
+
 VARIABLE:
 A variable in Python is a name used to store data in memory.
 It can be reusable
