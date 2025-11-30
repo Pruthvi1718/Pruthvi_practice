@@ -19,7 +19,6 @@ else:
 a = int(input("A: "))
 b = int(input("B: "))
 c = int(input("C: "))
-
 if a > b and a > c:
     print("A is largest")
 elif b > c:
@@ -50,7 +49,6 @@ else:
 year = int(input("Enter year: "))
 
 if (year % 400 == 0):
-
     print("Leap Year")
 else:
     print("Not Leap Year")
