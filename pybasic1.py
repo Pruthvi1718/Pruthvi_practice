@@ -5,7 +5,7 @@ op = input("Enter operation (+, -, *, /): ")
 print("Result =", eval(a + op + b))
 
 
-#another way
+#another way but lengthy
 a = int(input("Enter first number: "))
 b = int(input("Enter second number: "))
 print("1. Add")
@@ -30,6 +30,7 @@ else:
 
 
 #BASIC EXAMPLES on CONDITIONS, LOOPING & FUNCTIONS
+#CONDITION
 n = int(input("Enter Number:"))
 if n % 2 == 0:
     print("Number is even.")
@@ -124,6 +125,11 @@ if pwd == "abc123":
 
 
 
+#Loops
+
+for i in range(1, 11):
+    print("2 x", i, "=", 2 * i)
+
 
 for i in range(1, 6):
     print(i)
@@ -148,7 +154,42 @@ n = 5
 for i in range(1, 11):
     print(n * i)
 
+items = [10, 20, 30]
+for x in items:
+    print(x)
 
 
+for i in range(1, 11):
+    if i == 5: continue
+    print(i)
+
+
+for i in range(1, 10):
+    if i == 7:
+        break
+    print(i)
+
+
+
+
+#Functions
+def hello():
+    print("Hello Python!")
+hello()
+
+
+def add(a, b):
+    return a + b
+print(add(5, 3))
+
+
+def square(n):
+    return n * n
+print(square(6))
+
+
+def is_even(n):
+    return n % 2 == 0
+print(is_even(10))
 
 
