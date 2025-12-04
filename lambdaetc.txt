@@ -1,0 +1,146 @@
+LAMBDA:
+LAMBDA is small anonymous function in python, it is used as lambda as a
+keyword instead of def
+-It is used for short period of time
+
+syntax:
+lambda arguments: expression
+
+examples:
+add = lambda a, b: a + b
+print(add(5, 3))
+
+greet = lambda: "Hello Pruthvi!"
+print(greet())
+
+
+
+MAP():
+Map is a built in function in python that takes each item of iterable(list, tuples etc)
+and returns map  values(list, tuples, set)
+
+-Transform each element in a list
+-perform bulk operation
+
+Syntax:
+map(function, iterable)
+
+examples:
+num = [1, 2, 3, 4]
+result = list(map(lambda x: x * x, num))
+print(result)
+
+num1 = [10, 20, 30]
+result = list(map(str, num1))
+print(result)
+
+words = ["hello", "javascript", "python"]
+result = list(map(lambda w: w.upper(), words))
+print(result)
+
+words = ["REACT", "JS", "PYTHON"]
+result = list(map(lambda w: w.lower(), words))
+print(result)
+
+a = [1, 2, 3]
+b = [4, 5, 6]
+result = list(map(lambda x, y: x + y, a, b))
+print(result)
+
+words = ["bmw", "toyota", "maruthisuzuki"]
+result = list(map(len, words))
+print(result)
+
+import math
+num = [4, 9, 16, 25]
+result = list(map(math.sqrt, num))
+print(result)
+
+num2 = [1, 2, 3, 4, 5]
+result = list(map(lambda x: "Even" if x % 2 == 0 else "Odd", num2))
+print(result)
+
+
+FILTER():
+Filter is a function, which takes all iterable values and returns
+True or false based on conditions.
+-must return true or false
+-only true values are output
+
+syntax:
+filter(function, iterable)
+
+examples:
+num = [1, 2, 3, 4, 5, 6]
+result = list(filter(lambda x: x % 2 == 0, num))
+print(result)
+
+num = [1, 2, 3, 4, 5]
+result = list(filter(lambda x: x % 2 != 0, num))
+print(result)
+
+num = [5, 10, 15, 20, 3]
+result = list(filter(lambda x: x > 10, num))
+print(result)
+
+words = ["apple", "kiwi", "mango", "tea"]
+result = list(filter(lambda w: len(w) > 4, words))
+print(result)
+
+num = [-5, 0, 3, -2, 8]
+result = list(filter(lambda x: x > 0, num))
+print(result)
+
+num = [-5, 0, 3, -2, 8]
+result = list(filter(lambda x: x < 0, num))
+print(result)
+
+names = ["Arun", "Pruthvi", "Anuj", "Manoj"]
+result = list(filter(lambda n: n.startswith("P"), names))
+print(result)
+
+data = ["apple", "", "banana", "", "kiwi"]
+result = list(filter(lambda x: x != "", data))
+print(result)
+
+
+
+REDUCE:
+It is a function which takes all the iteration and return as single value
+It should be import from functools
+
+Syntax:
+from functools import reduce
+reduce(function, iterable)
+
+examples:
+from functools import reduce
+num = [1, 2, 3, 4]
+result = reduce(lambda x, y: x + y, num)
+print(result)
+
+from functools import reduce
+
+num = [2, 3, 4]
+result = reduce(lambda x, y: x * y, num)
+print(result)
+
+from functools import reduce
+num = [10, 50, 20, 30]
+result = reduce(lambda x, y: x if x > y else y, num)
+print(result)
+
+from functools import reduce
+num = [10, 50, 20, 30]
+result = reduce(lambda x, y: x if x < y else y, num)
+print(result)
+
+from functools import reduce
+words = ["Hello", "Pruthvi", "Welcome"]
+result = reduce(lambda x, y: x + " " + y, words)
+print(result)
+
+from functools import reduce
+digits = [1, 2, 3, 4]
+result = reduce(lambda x, y: x * 2 + y, digits)
+print(result)
