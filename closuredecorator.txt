@@ -1,0 +1,48 @@
+CLOSURES:
+Closures are the function in python, inner functions remembers and access the outer function
+even outer function has executed already.
+
+-It is light weight
+-Memorizing outer and inner function
+-Encapsulation private state
+
+example:
+def outer(x):
+    def inner(y):
+        return x + y
+    return inner
+out = outer(10)
+print(out(20))
+
+
+
+DECORATOR:
+Its a special python function,it takes another function & adds extra feature to it without modifying
+original code.
+
+syntax: @decorator
+        def function();
+
+example:
+@my_function
+def say_hello():
+    print("Hello!")
+say_hello()
+
+WRAPPER:
+Wrapper is the function wraps your original function (Maintain originality)
+
+
+
+Using both:
+def func1(func):
+    def wrapper():
+        print("Before calling")
+        func()
+        print("After calling")
+    return wrapper
+
+@func1
+def say_hello():
+    print("Hello!")
+say_hello()
