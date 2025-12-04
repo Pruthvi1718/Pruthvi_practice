@@ -1,6 +1,6 @@
 CLOSURES:
-Closures are the function in python, inner functions remembers and access the outer function
-even outer function has executed already.
+Closures are the function in python, inner functions remembers and
+access the outer function even outer function has executed already.
 
 -It is light weight
 -Memorizing outer and inner function
@@ -30,8 +30,7 @@ def say_hello():
 say_hello()
 
 WRAPPER:
-Wrapper is the function wraps your original function (Maintain originality)
-
+Wrapper is the function used instead of inner function to add feature (Maintain originality)
 
 
 Using both:
