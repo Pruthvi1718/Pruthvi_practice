@@ -1,0 +1,94 @@
+CLASS:
+Class is A class in Python is a blueprint or template used to create objects.
+It defines attributes (variables) and methods (functions) that describe the
+properties and behaviors of an object.
+
+Example:
+Think of a class as a blueprint of a car, and
+objects are the actual cars built from the blueprint.
+
+Class has 3 components:
+
+(a) Attributes
+Variables belonging to the class
+
+Two types:
+Instance Attributes - Unique to each object
+class Demo:
+    def message(self):
+        print("This is an instance method")
+
+Class Attributes - Shared by all objects
+
+(b) Method:
+Method is a function in class
+
+(c) Constructor:
+Constructor (__init__)
+A special method that runs automatically when an object is created
+Used for initializing attributes
+
+example:
+class Student:
+    def __init__(self, name, age):
+        self.name = name   #attribute
+        self.age = age
+
+    def show(self):        #method used
+        print(f"Name: {self.name}, Age: {self.age}")
+
+s1 = Student("Rocky", 22)  #object created
+s1.show()
+
+REAL TIME Example:
+class Doctor:
+    def __init__(self, name, specialization):
+        self.name = name
+        self.specialization = specialization
+
+    def show_details(self):
+        print(f"Dr. {self.name} - {self.specialization}")
+d1 = Doctor("Adi", "Cardiologist")
+d1.show_details()
+
+Uses:
+Supports oops concepts
+Well organized code
+object, methods used
+
+
+
+
+INHERITANCE:
+Inheritance in Python is an OOP concept where a child class
+(derived class) can acquire properties and methods of a parent class (base class).
+
+Syntax:
+class Parent:
+    # Parent properties & methods
+
+class Child(Parent):
+    # Child extends Parent
+
+Example:
+class Dog:
+    def sound(self):
+        print("Bark")
+
+class Cat:
+    def sound(self):
+        print("Meow")
+
+for animal in (Dog(), Cat()):
+    animal.sound()
+
+Types: -single Inheritance - 1 parent class & 1 child class
+       -multiple Inheritance - 2 parent class & 1 child class
+       -multilevel Inheritance - 1 Grand parent class, 1 parent class, 1 child class
+       -Hierarchical inheritance - 1 parent class & 2 child class
+
+Uses:
+Avoid duplication
+Easy maintenance
+Reusability
+Polymorphism
