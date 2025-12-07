@@ -1,0 +1,46 @@
+JSON:
+JavaScript Object Notation
+It is lightweight format used to store and exchange data
+Code is easy to read, write for humans,Easy for machines to parse and generate
+
+
+JSON commonly used for:
+API, Web Applications
+Data exchange between server and client
+
+JSON Structure:
+Object (dictionary) → { "key": "value" }
+Array (list) → [1, 2, 3]
+String → "hello"
+Number → 10, 10.5 (decimal allowed)
+Boolean → true, false
+Null → null
+
+How to use:
+import json
+
+
+Conversions: (serialization)
+Convert python object → json string
+json.dumps()
+
+Save python object → json file
+json.dump()
+
+
+Conversion: (Deserialization)
+Convert JSON string → Python object
+json.loads()
+
+Read json file → python object
+json.load()
+
+json string value:
+{ "10": "value" }
+
+valid string:
+{ "name": "Parrot" }
+
+import json
+print(json.loads('{"x": true}'))
+
