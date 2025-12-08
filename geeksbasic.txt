@@ -67,3 +67,33 @@ f = float(input())
 print(s)
 print(n + 10)
 print(f * 10)
+
+Extra examples:
+
+x = 10
+y = 20
+print(x + y)
+
+
+name = input("Enter your name: ")
+print("Hello", name)
+
+type casting:
+x = "10"
+y = int(x)
+print(y + 5) #15
+
+name = "PrutHvi"
+print(name.upper())
+print(name.lower())
+
+add new item:
+numbers = [1, 2, 3]
+numbers.append(4)
+print(numbers)
+
+text = "Python"
+print(text[0:3])   # Pyt
+
+x = 10
+print(type(x)) #<class 'int'>
