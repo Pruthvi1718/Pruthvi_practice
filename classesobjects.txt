@@ -40,6 +40,7 @@ class Student:
 s1 = Student("Rocky", 22)  #object created
 s1.show()
 
+
 REAL TIME Example:
 class Doctor:
     def __init__(self, name, specialization):
