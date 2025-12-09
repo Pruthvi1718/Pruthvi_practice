@@ -165,6 +165,7 @@ def merge_dictionary(d1, d2):
     return {**d1, **d2}
 print(merge_dictionary({"a":1}, {"b":2}))
 
+
 #using function count characters
 def frequency(s):
     return {ch: s.count(ch) for ch in s}
