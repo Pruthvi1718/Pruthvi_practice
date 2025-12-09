@@ -1,0 +1,78 @@
+FUNCTIONS:
+
+QUESTION 1:
+Input: n = 2
+Output: 4
+Explanation: 2 * 2 = 4
+
+SOLUTION:
+def returnValueFunction(n):
+    return 2*n
+
+
+QUESTION 2:
+Input: None
+Output: Hello
+Explanation: There is no input. The function prints Hello every time.
+
+SOLUTION:
+def say_hello():
+    print("Hello")
+
+
+QUESTION 3:
+Input: a = 2, b = 3
+Output: 5
+Explanation: 2 + 3 = 5
+
+SOLUTION:
+def argumentFunction(a, b):
+    return a + b
+argumentFunction(2, 3)
+
+
+MORE EXAMPLES:
+#Check even or odd function calling
+def func1(num):
+    if num % 2 == 0:
+        return f"{num} is Even and true"
+    else:
+        return f"{num} is Odd and false"
+print(func1(10))
+
+
+def even1(n):
+    return n % 2 == 0
+print(even1(7))
+
+# add 2 numbers
+def add(a, b):
+    return a + b
+print(add(10, 5))
+
+#function with keywords
+def details(name, age):
+    print(name, age)
+details(age=21, name="PQR")
+
+#function inside function
+def outer():
+    def inner():
+        return "Hello! itd"
+    return inner()
+print(outer())
+
+#map
+num1 = [1,2,3,4]
+result = list(map(lambda x: x*2, num1))
+print(result)
+
+#filter
+num2 = [10,15,20,25]
+even = list(filter(lambda x: x%2==0, num2))
+print(even)
+
+#reduce
+from functools import reduce
+num3 = [1,2,3,4]
+print(reduce(lambda a,b: a+b, num3))
