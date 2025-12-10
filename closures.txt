@@ -1,0 +1,14 @@
+CLOSURES:
+A closure in JavaScript is a feature where an inner function remembers and can access the variables of its outer
+function, even after the outer function has finished executing.
+
+Example:
+function outer() {
+  let x = 10;
+
+  function inner() {
+    console.log(x);
+  }
+  inner();
+}
+outer();
