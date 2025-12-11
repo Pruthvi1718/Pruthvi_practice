@@ -38,6 +38,7 @@ class Student:
         print(f"Name: {self.name}, Age: {self.age}")
 
 s1 = Student("Rocky", 22)  #object created
+
 s1.show()
 
 
