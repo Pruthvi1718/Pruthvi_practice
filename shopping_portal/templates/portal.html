@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/portal" class="nav-brand">Shopping App</a>
+        
+        <form action="/portal" method="GET" class="search-form">
+            <input type="text" name="q" class="search-input" placeholder="Search products..." value="{{ request.args.get('q', '') }}">
+            <button type="submit" class="btn-search">Search</button>
+        </form>
+
+        <div class="nav-links">
+            <span>Hi, {{ user }}</span>
+            <a href="/cart" class="nav-item">My Cart</a>
+            <a href="/logout" class="btn-logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h3>Available Products</h3>
+
+        {% if products %}
+            <div class="product-grid">
+                {% for product in products %}
+                <div class="product-card">
+                    <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" class="product-image">
+                    
+                    <span class="product-name">{{ product.name }}</span>
+                    <span class="product-price">₹{{ product.price }}</span>
+                    
+                    <form action="/buy/{{ product.id }}" method="POST">
+                        <button type="submit" class="btn-buy">Add to Cart</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No products found matching your search.</p>
+            <a href="/portal" class="btn-buy" style="text-decoration:none; display:inline-block; width:auto;">Clear Search</a>
+        {% endif %}
+
+    </div>
+</body>
+</html>

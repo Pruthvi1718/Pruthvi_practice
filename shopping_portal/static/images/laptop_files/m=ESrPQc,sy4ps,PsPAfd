@@ -1,0 +1,14 @@
+loaded_h_0(function(_){var window=this;
+_.t("ESrPQc");
+_.Axi=new _.Jf(_.r0a);
+_.v();
+_.Cxi=_.x("PsPAfd",[_.r0a,_.u0a]);
+_.t("PsPAfd");
+var Exi=function(a,b,c){b!==0&&(a.oa.has(b)?a.oa.get(b).push(c):a.oa.set(b,[c]))},Fxi=class{constructor(a){this.oa=a}};var Gxi=async function(a,{Fhb:b,Bg:c,productViewerMetadata:d,gC:e,t_a:f=""}){try{const g=_.B(a.oa,4)?_.y(await _.y(a.Aa())):[],h={Bg:c,Fhb:b,ZDe:_.qj(a.oa,7),productViewerMetadata:d,MHe:g,gC:e,t_a:f,nkb:a};_.y(await _.y(a.Zga.YAb(h)))}finally{_.y()}},Hxi=class extends _.cs{static Sa(){return{jsdata:{Wzd:_.Dxi},service:{Zga:_.Axi,j8a:_.Bxi}}}constructor(a){super(a.Oa);this.Aa=async()=>_.$g(this.oa,_.nS,1,_.ah()).length?_.$g(this.oa,_.nS,1,_.ah(_.Hi)):Promise.all(Array.from(this.getRoot().el().querySelectorAll("[data-pv-entrypoint]"),
+b=>this.yc(b,_.Ho))).then(b=>b.map(c=>c.Cc()));this.Zga=a.service.Zga;this.j8a=a.service.j8a;this.oa=_.p(a.jsdata.Wzd,_.ZS,1);this.flags=a.jsdata.Wzd.Zu();this.Zga.Kte(this.flags);this.Ba=new Fxi(this.Aa);Exi(this.j8a,_.qj(this.oa,7),this.Ba);this.addOnDisposeCallback(()=>{var b=this.j8a,c=_.qj(this.oa,7),d=this.Ba;c!==0&&b.oa.has(c)&&(b=b.oa.get(c),d=b.indexOf(d,0),d>-1&&b.splice(d,1))})}async Ca(a){try{let b;const c=((b=a.data)==null?void 0:b.gC)||a.targetElement;let d;const e=((d=a.data)==null?
+void 0:d.Bg)||_.Ie(this.Ia("B1641c").el());let f;const g=((f=a.data)==null?void 0:f.t_a)||"",h=this.Cc(a);if(!h)return!0;_.y(await _.y(Gxi(this,{Fhb:!1,Bg:e,productViewerMetadata:h,gC:c,t_a:g})))}finally{_.y()}}async Da(a){try{const b=a.data.YDe,c=a.data.query,d=_.Ie(this.getRoot().el());let e=null;const f=_.y(await _.y(this.Aa()));for(const g of f){const h=(new _.pS(c,g)).getKey();if(b.getKey()===h){e=g;break}}e&&_.y(await _.y(Gxi(this,{Fhb:!0,Bg:d,gC:a.targetElement,productViewerMetadata:e})))}finally{_.y()}}Cc(a){var b;
+if((b=a.data)==null?0:b.productViewerMetadata)return a.data.productViewerMetadata;b=a.targetElement;a:switch(_.Zl(b.getData("pvgMetadataKey"))){case 1:a=1;break a;case 2:a=2;break a;default:a=0}b=_.Vl(b.getData("pvgMetadataValue"));if(a!==0&&b)for(const d of _.$g(this.oa,_.nS,1,_.ah())){a:{switch(a){case 1:var c=_.Sg(d,1);break a;case 2:c=_.Sg(d,2);break a}c=void 0}if(c===b)return d}return null}};Hxi.prototype.$wa$bCGqS=function(){return this.Da};Hxi.prototype.$wa$egvsmc=function(){return this.Ca};
+_.es(_.Cxi,Hxi);
+_.v();
+});
+// Google Inc.

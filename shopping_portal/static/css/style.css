@@ -1,0 +1,260 @@
+/* ======================== */
+/* 1. GLOBAL & RESET        */
+/* ======================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ======================== */
+/* 2. FORMS & INPUTS        */
+/* ======================== */
+input, .form-control {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+    transition: border 0.3s;
+}
+
+input:focus, .form-control:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    border: none;
+    transition: background 0.3s;
+}
+
+/* Flash Messages */
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: left;
+}
+.alert-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.alert-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+
+/* ======================== */
+/* 3. NAVBAR                */
+/* ======================== */
+.navbar {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-item {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.nav-item:hover { color: white; }
+
+.btn-logout {
+    background-color: #dc3545;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.btn-logout:hover { background-color: #c82333; }
+
+/* Search Bar */
+.search-form {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+    max-width: 400px;
+    margin: 0 20px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    width: 100%;
+    outline: none;
+    margin: 0; 
+}
+
+.btn-search {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+.btn-search:hover { background-color: #e2e6ea; }
+
+/* ======================== */
+/* 4. LOGIN & REGISTER      */
+/* ======================== */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 350px;
+    text-align: center;
+}
+
+.login-card hr {
+    margin: 25px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.btn-login { background-color: #2ecc71; }
+.btn-login:hover { background-color: #27ae60; }
+
+.btn-register { background-color: #3498db; }
+.btn-register:hover { background-color: #2980b9; }
+
+.sub-text {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* ======================== */
+/* 5. SHOPPING PORTAL       */
+/* ======================== */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+.product-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: #2ecc71;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.btn-buy {
+    background-color: #3498db;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+}
+.btn-buy:hover { background-color: #2980b9; }
+
+/* ======================== */
+/* 6. CART TABLE            */
+/* ======================== */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.cart-table th {
+    background-color: #f8f9fa;
+    color: #555;
+    font-weight: bold;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #eee;
+}
+
+.cart-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.total-row {
+    margin-top: 20px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: right;
+    color: #333;
+}
+
+/* Force Red Remove Button */
+.btn-remove {
+    background-color: #e74c3c !important;
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+.btn-remove:hover {
+    background-color: #c0392b !important;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/portal" class="nav-brand">Shopping App</a>
+        <div style="flex-grow: 1;"></div>
+        <div class="nav-links">
+            <span>Hi, {{ user }}</span>
+            <a href="/portal" class="nav-item">Continue Shopping</a>
+            <a href="/logout" class="btn-logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h2>Your Cart History</h2>
+
+        {% if orders %}
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Purchase Date</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order[1] }}</td> <td>{{ order[3].strftime('%Y-%m-%d %H:%M') }}</td> <td>${{ order[2] }}</td> <td>
+                            <form action="/remove_item/{{ order[0] }}" method="POST" style="margin:0;">
+                                <button type="submit" class="btn-remove">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div class="total-row">
+                Total Spent: ${{ total }}
+            </div>
+        {% else %}
+            <p>Your cart is empty.</p>
+            <a href="/portal" class="btn-buy" style="display:inline-block; width:auto; text-decoration:none; margin-top:10px;">Start Shopping</a>
+        {% endif %}
+    </div>
+
+</body>
+</html>
