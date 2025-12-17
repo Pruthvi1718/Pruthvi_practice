@@ -4,22 +4,22 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 
 app = Flask(__name__)
 
-# --- Configuration ---
+# DB connection
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Pruthvi@sql28' # <--- UPDATE THIS
+app.config['MYSQL_PASSWORD'] = 'Pruthvi@sql28'
 app.config['MYSQL_DB'] = 'shop_db'
 
 app.config['JWT_SECRET_KEY'] = 'super-secret-key'
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-app.config['JWT_COOKIE_CSRF_PROTECT'] = False 
+app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 
 app.secret_key = 'random_secret_string'
 
 mysql = MySQL(app)
 jwt = JWTManager(app)
 
-# --- Routes ---
+#Routes
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -33,7 +33,7 @@ def login():
         cursor.close()
 
         if user:
-            # FIX: Convert ID to string for JWT
+            # Convert string for JWT
             access_token = create_access_token(identity=str(user[0]))
             
             resp = make_response(redirect(url_for('portal')))
@@ -75,14 +75,14 @@ def portal():
     cursor.execute("SELECT username FROM users WHERE id = %s", (current_user_id,))
     username = cursor.fetchone()[0]
 
-    # Get Products (UPDATED TO FETCH IMAGE)
+    # Fetch images
     if search_query:
         query_string = "%" + search_query + "%"
         cursor.execute("SELECT * FROM products WHERE name LIKE %s", (query_string,))
     else:
         cursor.execute("SELECT * FROM products")
     
-    # p[0]=id, p[1]=name, p[2]=price, p[3]=image_file
+    
     products = [{"id": p[0], "name": p[1], "price": p[2], "image": p[3]} for p in cursor.fetchall()]
     cursor.close()
     
@@ -97,9 +97,7 @@ def cart():
     cursor.execute("SELECT username FROM users WHERE id = %s", (current_user_id,))
     username = cursor.fetchone()[0]
 
-    # --- THIS IS THE FIX ---
-    # We added 'o.id' at the start. 
-    # Now order[0] is ID, order[1] is Name, order[2] is Price, order[3] is Date
+
     cursor.execute("""
         SELECT o.id, p.name, p.price, o.order_date 
         FROM orders o 
@@ -110,7 +108,7 @@ def cart():
     
     orders = cursor.fetchall()
     
-    # IMPORTANT: Update total calculation to use order[2] (Price)
+    # cart sum
     total_spent = sum([order[2] for order in orders]) 
     
     cursor.close()
@@ -128,15 +126,14 @@ def buy_product(product_id):
     flash("Added to Cart successfully!", "success")
     return redirect(url_for('portal'))
 
-# --- ADD THIS TO app.py ---
-
+# Remove product
 @app.route('/remove_item/<int:order_id>', methods=['POST'])
 @jwt_required()
 def remove_item(order_id):
     current_user_id = get_jwt_identity()
     cursor = mysql.connection.cursor()
     
-    # Delete the order ONLY if it belongs to the current user
+    # Delete the order
     cursor.execute("DELETE FROM orders WHERE id = %s AND user_id = %s", (order_id, current_user_id))
     mysql.connection.commit()
     cursor.close()
