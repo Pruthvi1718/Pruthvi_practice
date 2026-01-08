@@ -5,14 +5,17 @@ from django.http import HttpResponse
 def home(request):
     template = 'index.html'
 
+    data = {
+           "Karnataka": "Bengaluru",
+           "Maharashtra": "Mumbai",
+           "Goa": "Panaji",
+           "UP": "Lucknow",
+    }
 
-
-
-
-
-    return render(request, template)
+    return render(request, template, {"context":data})
 
 
 
 def about(request):
-    return HttpResponse("<h1>Welcome to My About Page</h1>")
+    template = 'about.html'
+    return render(request, template)

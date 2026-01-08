@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container bg-light" style="min-height: 100px;">
+
+
+     <table class="table table-striped w-50 mx-auto">
+        <tr>
+            <th>State</th>
+            <th>Capital</th>
+        </tr>
+        {% for state, capital in context.items %}
+            <tr>
+                <td>{{state}}</td>
+                <td>{{capital}}</td>
+            </tr>
+        {% endfor %}
+        </ul>
+    </table>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
