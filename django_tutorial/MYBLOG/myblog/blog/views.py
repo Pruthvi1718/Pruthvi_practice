@@ -1,6 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+
 def home(request):
-    return HttpResponse("<h1>Welcome to My Blogs</h1>")
+    template = 'index.html'
+
+
+
+
+
+
+    return render(request, template)
+
+
+
+def about(request):
+    return HttpResponse("<h1>Welcome to My About Page</h1>")
