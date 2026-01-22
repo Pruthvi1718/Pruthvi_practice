@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Best Selling Products</h2>
+
+<div class="product-grid">
+    {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+            <h3>{{ product.name }}</h3>
+
+            <p>
+                <del>₹{{ product.mrp }}</del>
+                <strong>₹{{ product.price }}</strong>
+            </p>
+
+            <button>Add to Cart</button>
+        </div>
+    {% empty %}
+        <p>No products available</p>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+
+
+{% for product in products %}
+<div class="product-card">
+    
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}
+        <img src="/static/images/no-image.png">
+    {% endif %}
+
+    <h3>{{ product.name }}</h3>
+
+    <p>
+        ₹{{ product.discounted_price|default:product.price }}
+    </p>
+
+</div>
+{% endfor %}

@@ -1,0 +1,40 @@
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: black;
+    color: white;
+    padding: 12px 20px;
+}
+
+.logo {
+    font-size: 26px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.header-center input {
+    width: 350px;
+    padding: 8px;
+}
+
+.header-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.icon {
+    color: white;
+    text-decoration: none;
+}
