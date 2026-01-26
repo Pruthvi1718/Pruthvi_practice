@@ -1,82 +1,89 @@
+from django.conf import settings
 from django.db import models
 
-#Category Model
+
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
+    parent = models.ForeignKey("self", on_delete=models.SET_NULL, null=True, blank=True, related_name="children")
     is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
 
 
-# SubCategory Model
-class SubCategory(models.Model):
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        related_name='subcategories'
-    )
-    name = models.CharField(max_length=100)
-    slug = models.SlugField()
-    is_active = models.BooleanField(default=True)
+class Brand(models.Model):
+    name = models.CharField(max_length=120)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
-        return f"{self.category.name} -> {self.name}"
+        return self.name
 
 
-# Product Model
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    subcategory = models.ForeignKey(
-        SubCategory,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True
-    )
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
+    sku = models.CharField(max_length=64, unique=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="products")
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name="products")
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    discounted_price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        null=True,
-        blank=True
-    )
-    stock = models.PositiveIntegerField()
-    is_available = models.BooleanField(default=True)
+    mrp = models.DecimalField(max_digits=10, decimal_places=2)
+    color = models.CharField(max_length=50, blank=True)
+    size = models.CharField(max_length=50, blank=True)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
 
 
-# Product Image Model
 class ProductImage(models.Model):
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name='images'
-    )
-    image = models.ImageField(upload_to='products/')
-    is_main = models.BooleanField(default=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
+    image = models.ImageField(upload_to="products/", null=True, blank=True)
+    alt_text = models.CharField(max_length=200, blank=True)
+    is_primary = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.product.name
+        image_name = self.image.name if self.image else ""
+        return f"{self.product_id} - {image_name}"
 
 
-# Product Specification Model
-class ProductSpecification(models.Model):
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name='specifications'
-    )
-    key = models.CharField(max_length=100)
+class ProductSpec(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="specs")
+    name = models.CharField(max_length=120)
     value = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"{self.key}: {self.value}"
+        return f"{self.product_id} - {self.name}"
 
+
+class Inventory(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name="inventory")
+    stock = models.PositiveIntegerField(default=0)
+    reserved = models.PositiveIntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    @property
+    def available_stock(self):
+        return max(self.stock - self.reserved, 0)
+
+    def __str__(self):
+        return f"{self.product_id} - {self.stock}"
+
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="reviews")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="reviews")
+    rating = models.PositiveSmallIntegerField()
+    title = models.CharField(max_length=200, blank=True)
+    comment = models.TextField(blank=True)
+    is_approved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("product", "user")
+
+    def __str__(self):
+        return f"{self.product_id} - {self.user_id}"

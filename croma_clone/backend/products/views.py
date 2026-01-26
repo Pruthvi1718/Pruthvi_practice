@@ -1,34 +1,72 @@
-from rest_framework import generics
-from .models import Product
-from .serializers import ProductSerializer
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from django.db.models import Q
+from rest_framework import permissions, viewsets
+
+from users.permissions import IsOwnerOrAdmin
+from .models import Brand, Category, Inventory, Product, ProductImage, ProductSpec, Review
+from .serializers import (
+    BrandSerializer,
+    CategorySerializer,
+    InventorySerializer,
+    ProductImageSerializer,
+    ProductSerializer,
+    ProductSpecSerializer,
+    ReviewSerializer,
+)
 
 
-class ProductListView(generics.ListAPIView):
-    queryset = Product.objects.all()
+class ReadOnlyOrAdmin(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return request.user and request.user.is_staff
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [ReadOnlyOrAdmin]
+
+
+class BrandViewSet(viewsets.ModelViewSet):
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
+    permission_classes = [ReadOnlyOrAdmin]
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.select_related("category", "brand").all()
     serializer_class = ProductSerializer
+    permission_classes = [ReadOnlyOrAdmin]
 
-class ProductDetailView(generics.RetrieveAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
 
-#serializer
-@api_view(['GET'])
-def product_list(request):
-    products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
+class ProductImageViewSet(viewsets.ModelViewSet):
+    queryset = ProductImage.objects.select_related("product").all()
+    serializer_class = ProductImageSerializer
+    permission_classes = [ReadOnlyOrAdmin]
 
-#create home url
-from django.shortcuts import render
 
-def home(request):
-    return render(request, 'home.html')
+class ProductSpecViewSet(viewsets.ModelViewSet):
+    queryset = ProductSpec.objects.select_related("product").all()
+    serializer_class = ProductSpecSerializer
+    permission_classes = [ReadOnlyOrAdmin]
 
-#add product
-from django.shortcuts import render
 
-def home(request):
-    products = Product.objects.filter(is_available=True)
-    return render(request, 'home.html', {'products': products})
+class InventoryViewSet(viewsets.ModelViewSet):
+    queryset = Inventory.objects.select_related("product").all()
+    serializer_class = InventorySerializer
+    permission_classes = [ReadOnlyOrAdmin]
+
+
+class ReviewViewSet(viewsets.ModelViewSet):
+    serializer_class = ReviewSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrAdmin]
+
+    def get_queryset(self):
+        if self.request.user.is_staff:
+            return Review.objects.select_related("product", "user").all()
+        if self.request.user.is_authenticated:
+            return Review.objects.filter(Q(is_approved=True) | Q(user=self.request.user))
+        return Review.objects.filter(is_approved=True)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
